@@ -1,0 +1,69 @@
+
+entity Customer	{
+	name String required minlength(3) maxlength(255)
+    registrationNumber String required minlength(9) maxlength(9)
+    email String required
+    phoneNumber String required pattern(/^(?:([+][0-9]{1,2})+[ .-]*)?([(]{1}[0-9]{1,6}[)])?([0-9 .-/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$/)
+    preferredCommunicationChannel String required maxlength(10)
+	mainContactEmail String required
+	logo ImageBlob
+}
+
+entity Address	{
+	street String maxlength(255)
+	houseNumber Integer required
+	city String required maxlength(255)
+	zipCode String maxlength(10)
+}
+
+entity Employee	{
+	userId Long
+ 	firstName String required maxlength(50)
+    lastName String required maxlength(50)
+	email String required
+    mobileNumber String required
+	langKey String required minlength(2) maxlength(10)
+	birthdate ZonedDateTime required
+	type EmployeeType
+}
+
+enum EmployeeType {
+    TECHNICIAN, CUSTOMER_SERVICE_REPRESENTATIVE
+}
+
+
+entity ServiceRequest	{
+	type ServiceRequestType
+	assignee Employee
+    customer Customer
+    description String
+    date ZonedDateTime required
+	status ServiceRequestStatus
+}
+
+
+enum ServiceRequestType {
+    INSTALLATION, REPAIR, PREVENTIVE_MAINTAINANCE
+}
+
+enum ServiceRequestStatus {
+    SCHEDULED, CANCELED, DONE
+}
+
+
+
+relationship ManyToMany	{
+    ServiceRequest{employee(id)} to Employee{serviceRequest(id)}
+    ServiceRequest{customer(id)} to Customer{serviceRequest(id)}
+}
+
+
+relationship OneToMany	{
+	Customer to Address
+}
+
+
+filter all
+dto all with mapstruct
+paginate all with pagination
+service all with serviceClass
