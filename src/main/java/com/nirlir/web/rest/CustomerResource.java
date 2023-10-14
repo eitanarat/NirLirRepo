@@ -6,6 +6,7 @@ import com.nirlir.service.CustomerService;
 import com.nirlir.service.criteria.CustomerCriteria;
 import com.nirlir.service.dto.CustomerDTO;
 import com.nirlir.web.rest.errors.BadRequestAlertException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -64,7 +65,7 @@ public class CustomerResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/customers")
-    public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody CustomerDTO customerDTO) throws URISyntaxException {
+    public ResponseEntity<CustomerDTO> createCustomer(@Valid @RequestBody CustomerDTO customerDTO) throws URISyntaxException, IOException {
         log.debug("REST request to save Customer : {}", customerDTO);
         if (customerDTO.getId() != null) {
             throw new BadRequestAlertException("A new customer cannot already have an ID", ENTITY_NAME, "idexists");

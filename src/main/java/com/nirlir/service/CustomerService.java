@@ -4,6 +4,7 @@ import com.nirlir.domain.Customer;
 import com.nirlir.repository.CustomerRepository;
 import com.nirlir.service.dto.CustomerDTO;
 import com.nirlir.service.mapper.CustomerMapper;
+import java.io.IOException;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +26,12 @@ public class CustomerService {
 
     private final CustomerMapper customerMapper;
 
-    public CustomerService(CustomerRepository customerRepository, CustomerMapper customerMapper) {
+    private final DetectLogosService detectLogosService;
+
+    public CustomerService(CustomerRepository customerRepository, CustomerMapper customerMapper, DetectLogosService detectLogosService) {
         this.customerRepository = customerRepository;
         this.customerMapper = customerMapper;
+        this.detectLogosService = detectLogosService;
     }
 
     /**
@@ -36,8 +40,11 @@ public class CustomerService {
      * @param customerDTO the entity to save.
      * @return the persisted entity.
      */
-    public CustomerDTO save(CustomerDTO customerDTO) {
+    public CustomerDTO save(CustomerDTO customerDTO) throws IOException {
         log.debug("Request to save Customer : {}", customerDTO);
+
+        detectLogosService.detectLogos(customerDTO.getLogo());
+
         Customer customer = customerMapper.toEntity(customerDTO);
         customer = customerRepository.save(customer);
         return customerMapper.toDto(customer);

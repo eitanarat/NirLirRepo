@@ -90,7 +90,8 @@ public class NirLirApp {
             "Application '{}' is running! Access URLs:\n\t" +
             "Local: \t\t{}://localhost:{}{}\n\t" +
             "External: \t{}://{}:{}{}\n\t" +
-            "Profile(s): \t{}\n----------------------------------------------------------",
+            "Profile(s): \t{}\n----------------------------------------------------------" +
+            "ENV VARS: {}",
             env.getProperty("spring.application.name"),
             protocol,
             serverPort,
@@ -99,7 +100,8 @@ public class NirLirApp {
             hostAddress,
             serverPort,
             contextPath,
-            env.getActiveProfiles().length == 0 ? env.getDefaultProfiles() : env.getActiveProfiles()
+            env.getActiveProfiles().length == 0 ? env.getDefaultProfiles() : env.getActiveProfiles(),
+            env.toString()
         );
     }
 }
