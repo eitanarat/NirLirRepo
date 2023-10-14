@@ -1,0 +1,10 @@
+{
+  "nirLirApp": {
+    "CommunicationChannel": {
+      "null": "",
+      "EMAIL": "EMAIL",
+      "SMS": "SMS",
+      "MOBILE": "MOBILE"
+    }
+  }
+}

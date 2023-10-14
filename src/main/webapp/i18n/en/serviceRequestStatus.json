@@ -1,0 +1,10 @@
+{
+  "nirLirApp": {
+    "ServiceRequestStatus": {
+      "null": "",
+      "SCHEDULED": "SCHEDULED",
+      "CANCELED": "CANCELED",
+      "DONE": "DONE"
+    }
+  }
+}

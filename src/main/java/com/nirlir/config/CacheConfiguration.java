@@ -48,6 +48,15 @@ public class CacheConfiguration {
             createCache(cm, com.nirlir.domain.User.class.getName());
             createCache(cm, com.nirlir.domain.Authority.class.getName());
             createCache(cm, com.nirlir.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.nirlir.domain.Customer.class.getName());
+            createCache(cm, com.nirlir.domain.Customer.class.getName() + ".addresses");
+            createCache(cm, com.nirlir.domain.Customer.class.getName() + ".serviceRequests");
+            createCache(cm, com.nirlir.domain.Address.class.getName());
+            createCache(cm, com.nirlir.domain.Technician.class.getName());
+            createCache(cm, com.nirlir.domain.Technician.class.getName() + ".serviceRequests");
+            createCache(cm, com.nirlir.domain.ServiceRequest.class.getName());
+            createCache(cm, com.nirlir.domain.ServiceRequest.class.getName() + ".technicians");
+            createCache(cm, com.nirlir.domain.ServiceRequest.class.getName() + ".customers");
             // jhipster-needle-ehcache-add-entry
         };
     }

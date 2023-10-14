@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20231012090856",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "service_request",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "ServiceRequestType",
+      "fieldValues": "INSTALLATION,REPAIR,PREVENTIVE_MAINTAINANCE"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "2000",
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ServiceRequestStatus",
+      "fieldValues": "SCHEDULED,CANCELED,DONE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "ServiceRequest",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "technician",
+      "otherEntityRelationshipName": "serviceRequest",
+      "ownerSide": true,
+      "relationshipName": "technician",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "customer",
+      "otherEntityRelationshipName": "serviceRequest",
+      "ownerSide": true,
+      "relationshipName": "customer",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

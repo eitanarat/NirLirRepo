@@ -1,44 +1,39 @@
-
 entity Customer	{
-	name String required minlength(3) maxlength(255)
+    name String required minlength(3) maxlength(255)
     registrationNumber String required minlength(9) maxlength(9)
     email String required
     phoneNumber String required pattern(/^(?:([+][0-9]{1,2})+[ .-]*)?([(]{1}[0-9]{1,6}[)])?([0-9 .-/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$/)
-    preferredCommunicationChannel String required maxlength(10)
+    communicationChannel CommunicationChannel
 	mainContactEmail String required
 	logo ImageBlob
 }
 
+enum CommunicationChannel {
+    EMAIL, SMS, MOBILE
+}
+
 entity Address	{
-	street String maxlength(255)
-	houseNumber Integer required
-	city String required maxlength(255)
-	zipCode String maxlength(10)
+    street String maxlength(255)
+    houseNumber Integer required
+    city String required maxlength(255)
+    zipCode String maxlength(10)
 }
 
-entity Employee	{
-	userId Long
- 	firstName String required maxlength(50)
+entity Technician	{
+    userId Long
+    firstName String required maxlength(50)
     lastName String required maxlength(50)
-	email String required
+    email String required
     mobileNumber String required
-	langKey String required minlength(2) maxlength(10)
-	birthdate ZonedDateTime required
-	type EmployeeType
+    langKey String required minlength(2) maxlength(10)
+    birthdate ZonedDateTime required
 }
-
-enum EmployeeType {
-    TECHNICIAN, CUSTOMER_SERVICE_REPRESENTATIVE
-}
-
 
 entity ServiceRequest	{
-	type ServiceRequestType
-	assignee Employee
-    customer Customer
-    description String
+    type ServiceRequestType
+    description String minlength(3) maxlength(2000)
     date ZonedDateTime required
-	status ServiceRequestStatus
+    status ServiceRequestStatus
 }
 
 
@@ -53,13 +48,13 @@ enum ServiceRequestStatus {
 
 
 relationship ManyToMany	{
-    ServiceRequest{employee(id)} to Employee{serviceRequest(id)}
+    ServiceRequest{technician} to Technician{serviceRequest(id)}
     ServiceRequest{customer(id)} to Customer{serviceRequest(id)}
 }
 
 
 relationship OneToMany	{
-	Customer to Address
+    Customer to Address
 }
 
 

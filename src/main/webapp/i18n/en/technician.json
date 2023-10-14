@@ -1,0 +1,31 @@
+{
+  "nirLirApp": {
+    "technician": {
+      "home": {
+        "title": "Technicians",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Technician",
+        "createOrEditLabel": "Create or edit a Technician",
+        "notFound": "No Technicians found"
+      },
+      "created": "A new Technician is created with identifier {{ param }}",
+      "updated": "A Technician is updated with identifier {{ param }}",
+      "deleted": "A Technician is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Technician {{ id }}?"
+      },
+      "detail": {
+        "title": "Technician"
+      },
+      "id": "ID",
+      "userId": "User Id",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "mobileNumber": "Mobile Number",
+      "langKey": "Lang Key",
+      "birthdate": "Birthdate",
+      "serviceRequest": "Service Request"
+    }
+  }
+}

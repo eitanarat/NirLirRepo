@@ -1,0 +1,10 @@
+{
+  "nirLirApp": {
+    "ServiceRequestType": {
+      "null": "",
+      "INSTALLATION": "INSTALLATION",
+      "REPAIR": "REPAIR",
+      "PREVENTIVE_MAINTAINANCE": "PREVENTIVE_MAINTAINANCE"
+    }
+  }
+}
